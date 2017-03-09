@@ -11,8 +11,8 @@ summary.lines <- function (mod, start, end) {
   cat(paste(s[start:end], collapse="\n"))
 }
 
-summary.coefs <- function (mod, ...) {
-  s <- capture.output(summary(mod, ...))
+summary.coefs <- function (mod, digits=max(3, getOption("digits") - 3), ...) {
+  s <- capture.output(print(summary(mod), digits=digits))
   start <- grep("Parametric coefficients", s)
   sigs <- grep("Signif[.] codes", s)
   end <- sigs[length(sigs)]
@@ -291,10 +291,9 @@ plot_smooth.cont <- function (x, plot_all.c = NULL, cond = list(), ylim=NULL, ad
       names(cnd) <- plot_all.c
       cond2 <- cond
       cond2[[plot_all.c]] <- levels[l]
-      pdf("_plot_smooth_cont_temp.png")
+      pdf(file=NULL)
       fvs[[l]] <- plot_smooth(x, cond=cond2, print.summary=F, ...)$fv
       dev.off()
-      file.remove("_plot_smooth_cont_temp.png")
     }
     ymin <- min(do.call(rbind, fvs)$ll)
     ymax <- max(do.call(rbind, fvs)$ul)
