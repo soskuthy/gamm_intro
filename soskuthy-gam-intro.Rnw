@@ -43,7 +43,7 @@ source("gamm_hacks.r")
 
 
 \noindent{\textls{\MakeUppercase{Generalised Additive Mixed Models for dynamic analysis\\ in linguistics: A practical introduction}}\footnote{
-This introduction has been updated a few times. Details of the changes are shown on the associated GitHub page (see end of section \ref{sec:intro} for the link).
+This introduction has been updated a few times. Thanks to Martijn Wieling, Bodo Winter and Donald Derrick for helpful comments and suggestions. Details of the changes are shown on the associated GitHub page (see end of section \ref{sec:intro} for the link).
 }\vspace{1ex}\\\textit{M{\'a}rton S{\'o}skuthy\\ University of York}}\vspace{1ex}\\
 \noindent [last updated: \today]
 %\pagestyle{empty}
@@ -688,7 +688,7 @@ for (i in 1:iterations) {
 words.50 <- data.frame(traj=paste("traj.", rep(1:(iterations*2), each=length(xs)), sep=""), word=rep(c("A","B"), each=length(xs)*iterations),measurement.no=xs*10, f2=c(ys.m), duration=rep(c(durs.1,durs.2), each=length(xs)))
 words.50$word <- as.factor(words.50$word)
 words.50$traj <- as.factor(words.50$traj)
-#write.csv(words.50, file="words_50.csv")
+#write.csv(words.50, file="words_50.csv", row.names=F)
 words.50 <- read.csv("words_50.csv")
 @
 <<words.50.sample, echo=T, size="footnotesize">>=
@@ -1207,6 +1207,7 @@ Below is a short (and incomplete) list of useful GAMM references. I consulted ma
   \item \href{http://www.sfs.uni-tuebingen.de/~jvanrij/Tutorial/GAMM.html}{\begin{NoHyper}\citet{vanrij15}\end{NoHyper}}: A great online tutorial that covers many of the technical aspects of fitting GAMMs. It also includes autocorrelation and model comparisons.
   \item \href{https://cran.r-project.org/web/packages/itsadug/vignettes/test.html}{\begin{NoHyper}\citet{vanrij16}\end{NoHyper}}: A brief R vignette that describes three different methods for significance testing using GAMMs. Note that some of the model comparisons are based on GAMMs fitted with fREML, which may lead to unreliable results (this is noted in the text as well).
   \item \href{https://academic.oup.com/jole/article/1/1/7/2281883/How-to-analyze-linguistic-change-using-mixed}{\begin{NoHyper}\citet{winterandwieling16}\end{NoHyper}}: Discusses GAMMs in the context of language change and evolution and provides a clear and concise introduction to GAMMs and mixed models in general. It also covers a number of topics that are not discussed here, such as autocorrelation and logistic / Poisson GAMMs. It comes with thoroughly commented example code that is also available at\\ \url{https://github.com/bodowinter/change_tutorial_materials}.
+  \item \href{http://www.let.rug.nl/wieling/statscourse}{\begin{NoHyper}\citet{wieling17stats}\end{NoHyper}}: Lecture slides for a five-day workshop on advanced regression methods. Lectures 3--5 provide a very detailed introduction to GAMMs with tons of useful examples illustrating ways of dealing with autocorrelation, non-normally distributed residuals and also a range of different types of data (including ERP and articulatory data).
 \end{itemize}
 
 
